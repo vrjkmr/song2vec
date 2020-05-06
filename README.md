@@ -1,4 +1,4 @@
-# word2vec-recsys
+# word2vec-music
 
 ### Tasks
 
