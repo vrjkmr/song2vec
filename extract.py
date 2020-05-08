@@ -34,7 +34,7 @@ num_strides = NUM_ROWS_TO_EXTRACT // STRIDE_LENGTH
 for i in range(num_strides):
     start_idx = i * STRIDE_LENGTH
     end_idx = ((i + 1) * STRIDE_LENGTH) - 1
-    print("- processing {}/{}...".format(i, num_strides))
+    print("- processing {}/{}...".format(i+1, num_strides))
     clean_sub_dataframe = dataframe.loc[start_idx:end_idx, :].apply(extract, axis=1)
     filename = "data/{}-{}.csv".format(start_idx, end_idx)
     clean_sub_dataframe.to_csv(filename, sep="\t")
