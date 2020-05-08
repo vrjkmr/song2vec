@@ -16,7 +16,7 @@ embedding_weights = target_embedding_layer.get_weights()[0]
 print("embedding shape:", embedding_weights.shape)
 
 # specify track name and top n
-track_name = "ratatat - gettysburg" # specify track name
+track_name = "john mayer - free fallin' - live at the nokia theatre" # specify track name
 n = 10 # get top n most similar songs
 
 # get track embedding

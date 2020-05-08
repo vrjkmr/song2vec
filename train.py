@@ -38,7 +38,7 @@ x = Dot(axes=1)([target_emb, context_emb])
 x = Dense(1, activation="sigmoid")(x)
 
 model = Model([target_inp, context_inp], x)
-print(model.summary)
+print(model.summary())
 
 # compile model
 optimizer = "adam"

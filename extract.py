@@ -5,8 +5,8 @@ import glob
 import os
 
 # hyperparameters
-NUM_ROWS_TO_EXTRACT = 2000 # set to -1 to extract entire dataset
-STRIDE_LENGTH = 1000
+NUM_ROWS_TO_EXTRACT = 10000 # set to -1 to extract entire dataset
+STRIDE_LENGTH = 5000
 
 # load dataframe
 print("loading dataframe...")
