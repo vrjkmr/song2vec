@@ -9,17 +9,18 @@ from tensorflow.keras.layers import Input, Embedding, Flatten, Dot, Dense
 RANDOM_SEED = 42
 EMBEDDING_DIM = 100
 NUM_EPOCHS = 20
+BASE_DIR = "test"
 
 # load tokenizer
 print("loading tokenizer...")
-tokenizer = pickle.load(open("data/tokenizer.pkl", "rb"))
+tokenizer = pickle.load(open(BASE_DIR + "/data/tokenizer.pkl", "rb"))
 track2idx = tokenizer.word_index
 vocabulary_size = len(track2idx) + 1
 
 # load training data
 print("loading training data...")
-X = pickle.load(open("data/X.pkl", "rb"))
-y = pickle.load(open("data/y.pkl", "rb"))
+X = pickle.load(open(BASE_DIR + "/data/X.pkl", "rb"))
+y = pickle.load(open(BASE_DIR + "/data/y.pkl", "rb"))
 
 # set seed
 tensorflow.random.set_seed(RANDOM_SEED)
@@ -56,8 +57,10 @@ print("training model...")
 with tensorflow.device(device_config):
     r = model.fit(X, y, epochs=NUM_EPOCHS)
 
-# store model and training data
-print("done. saving model and training data...")
-model.save("model")
-pickle.dump(r.history, open("training_history", "wb"))
+# store model and embedding weights
+print("done. saving model and embeddings...")
+model.save(BASE_DIR + "/model")
+target_embedding_layer = model.layers[2]
+embedding_weights = target_embedding_layer.get_weights()[0]
+pickle.dump(embedding_weights, open(BASE_DIR + "/embeddings.pkl", "wb"))
 print("done.")

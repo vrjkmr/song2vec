@@ -8,10 +8,11 @@ import pickle
 # set hyperparameters
 WINDOW_SIZE = 2
 RANDOM_SEED = 42
+BASE_DIR = "test"
 
 # load dataframe
 print("loading dataframe...")
-filename = "data/spotify_playlists/combined_dataset.csv"
+filename = BASE_DIR + "/data/combined_dataset.csv"
 dataframe = pd.read_csv(filename, sep="\t", index_col=0)
 
 # separate track names by playlist
@@ -35,15 +36,11 @@ print("vocabulary size (# tracks):", vocabulary_size)
 
 # store tokenizer
 print("saving tokenizer...")
-pickle.dump(tokenizer, open("data/tokenizer.pkl", "wb"))
+pickle.dump(tokenizer, open(BASE_DIR + "/data/tokenizer.pkl", "wb"))
 
 # generate skip-grams
 print("generating negative sampling skip-gram pairs...")
 skip_grams = [skipgrams(sequence, vocabulary_size, window_size=WINDOW_SIZE, seed=RANDOM_SEED) for sequence in sequences]
-
-# store skip-grams
-print("saving pairs...")
-pickle.dump(skip_grams, open("data/skipgrams.pkl", "wb"))
 
 # prepare training data
 print("preparing training data...")
@@ -65,6 +62,6 @@ X = [targets, contexts]
 
 # store dataset
 print("saving training data...")
-pickle.dump(X, open("data/X.pkl", "wb"))
-pickle.dump(y, open("data/y.pkl", "wb"))
+pickle.dump(X, open(BASE_DIR + "/data/X.pkl", "wb"))
+pickle.dump(y, open(BASE_DIR + "/data/y.pkl", "wb"))
 print("done.")

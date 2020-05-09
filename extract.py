@@ -3,15 +3,21 @@ import numpy as np
 import pandas as pd
 import glob
 import os
+import argparse
+from utils import create_dir_if_not_exists
 
-# hyperparameters
-NUM_ROWS_TO_EXTRACT = 10000 # set to -1 to extract entire dataset
-STRIDE_LENGTH = 5000
+CSV_FILEPATH = "data/spotify_playlists/spotify_dataset.csv"
+NUM_ROWS_TO_EXTRACT = 10000
+BASE_DIR = "test"
+NUM_BATCHES = 4
+
+# intitialize export location
+create_dir_if_not_exists(BASE_DIR)
+create_dir_if_not_exists(BASE_DIR + "/data")
 
 # load dataframe
 print("loading dataframe...")
-filename = "data/spotify_playlists/spotify_dataset.csv"
-dataframe = pd.read_csv(filename, sep="\t", skiprows=1, names=["all_data"])
+dataframe = pd.read_csv(CSV_FILEPATH, sep="\t", skiprows=1, names=["all_data"])
 
 # extract data from dataframe
 def extract(row):
@@ -30,18 +36,18 @@ def extract(row):
 print("cleaning dataframe...")
 if NUM_ROWS_TO_EXTRACT == -1:
     NUM_ROWS_TO_EXTRACT = len(dataframe)
-num_strides = NUM_ROWS_TO_EXTRACT // STRIDE_LENGTH
-for i in range(num_strides):
-    start_idx = i * STRIDE_LENGTH
-    end_idx = ((i + 1) * STRIDE_LENGTH) - 1
-    print("- processing {}/{}...".format(i+1, num_strides))
+batch_length = NUM_ROWS_TO_EXTRACT // NUM_BATCHES
+for i in range(NUM_BATCHES):
+    start_idx = i * batch_length
+    end_idx = ((i + 1) * batch_length) - 1
+    print("- processing {}/{}...".format(i+1, NUM_BATCHES))
     clean_sub_dataframe = dataframe.loc[start_idx:end_idx, :].apply(extract, axis=1)
-    filename = "data/{}-{}.csv".format(start_idx, end_idx)
+    filename = BASE_DIR + "/data/{}-{}.csv".format(start_idx, end_idx)
     clean_sub_dataframe.to_csv(filename, sep="\t")
 
 # merge sub-dataframes
 print("done. merging cleaned dataframes...")
-filepaths = glob.glob("data/*[-]*.csv")
+filepaths = glob.glob(BASE_DIR + "/data/*[-]*.csv")
 filepaths.sort(key=lambda x: int(x.split("-")[0].split("/")[-1]))
 combined_dataframe = pd.read_csv(filepaths[0], sep="\t", index_col=0)
 if len(filepaths) > 1:
@@ -55,6 +61,6 @@ for filepath in filepaths:
 
 # export combined dataframe
 print("exporting final dataframe...")
-filename = "data/spotify_playlists/combined_dataset.csv"
+filename = BASE_DIR + "/data/combined_dataset.csv"
 combined_dataframe.to_csv(filename, sep="\t")
 print("done.")
