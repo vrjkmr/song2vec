@@ -1,0 +1,9 @@
+{
+    "experiment_name": "default_hyperparams",
+    "num_rows": 10000,
+    "window_size": 2,
+    "embedding_dim": 100,
+    "epochs": 20,
+    "learning_rate": 0.001,
+    "random_seed": 42
+}
