@@ -84,4 +84,7 @@ Once run, the relevant files (including the model, embeddings, and tokenizer) wi
 
 ### Acknowledgements
 
-[TODO](): Write this section.
+- [Spotify Playlists Dataset by Zenodo](https://zenodo.org/record/2594557)
+- [Applying word2vec to Recommenders and Advertising](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
+- [Machine Learning & Big Data for Music Discovery presented by Spotify](https://youtu.be/HKW_v0xLHH4) 
+- [Implementing Deep Learning Methods and Feature Engineering for Text Data: The Skip-gram Model](https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-skip-gram.html)
