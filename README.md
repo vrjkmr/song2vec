@@ -16,7 +16,7 @@ This project was based on a [2017 talk by Spotify ML](https://youtu.be/HKW_v0xLH
 
 The model seems to have not only learned similar vectors for tracks that appear close to one another in a given playlist, but also managed to learn some interesting relationships between songs that appear nowhere near each other in the dataset.
 
-Below is an example showing songs similar to John Mayer's cover of Tom Petty's "Free Fallin'" post-training.
+Below is an example showing songs similar to [John Mayer's cover](https://youtu.be/20Ov0cDPZy8) of [Tom Petty's song, "Free Fallin'"](https://youtu.be/1lWJXDG2i0A).
 
 ```
 top 10 tracks most similar to 'john mayer - free fallin' - live at the nokia theatre' (pos. 4602):
