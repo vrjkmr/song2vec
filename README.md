@@ -34,9 +34,19 @@ top 10 tracks most similar to 'john mayer - free fallin' - live at the nokia the
 
 As can be seen above, the model was able to learn the similarity between John Mayer's cover and Tom Petty's original version, even though both tracks do not appear close to each other in the dataset. John Mayer's cover appears in position 4602 and Tom Petty's original appears in position 206.
 
-### Project structure
+### Project directory structure
 
-[TODO](): Write this section.
+```
+.
+├── experiments/                # experiments (processed data + models)
+    ├── default_hyperparams/    # experiment results for default hyperparameters
+├── notebooks/                  # jypyter notebooks for inference
+├── raw_data/                   # part of the original Zenodo dataset
+├── src/                        # cleaning, preprocessing, and training scripts
+├── run_experiment.py           # script for running an end-to-end experiment
+├── requirements.txt
+└── README.md
+```
 
 ## Running the project
 
