@@ -6,10 +6,10 @@ from tensorflow.keras.preprocessing.sequence import skipgrams
 import pickle
 
 # preprocess function
-def preprocess_data(experiment_name, window_size, random_seed=42):
+def preprocess_data(experiment_dir_path, window_size, random_seed=42):
 
     # load dataframe
-    filename = experiment_name + "/data/combined_dataset.csv"
+    filename = experiment_dir_path + "/data/combined_dataset.csv"
     dataframe = pd.read_csv(filename, sep="\t", index_col=0)
 
     # separate track names by playlist
@@ -30,7 +30,7 @@ def preprocess_data(experiment_name, window_size, random_seed=42):
     print("vocabulary size (# tracks): {size}".format(size=vocabulary_size))
 
     # store tokenizer
-    pickle.dump(tokenizer, open(experiment_name + "/data/tokenizer.pkl", "wb"))
+    pickle.dump(tokenizer, open(experiment_dir_path + "/data/tokenizer.pkl", "wb"))
 
     # generate skip-grams
     skip_grams = [skipgrams(sequence, vocabulary_size, window_size=window_size, seed=random_seed) for sequence in sequences]
@@ -54,6 +54,6 @@ def preprocess_data(experiment_name, window_size, random_seed=42):
 
     # store dataset
     num_datapoints = y.shape[0]
-    pickle.dump(X, open(experiment_name + "/data/X.pkl", "wb"))
-    pickle.dump(y, open(experiment_name + "/data/y.pkl", "wb"))
-    print("exported {count} skip-gram pairs to {path}.".format(count=num_datapoints, path=experiment_name + "/data"))
+    pickle.dump(X, open(experiment_dir_path + "/data/X.pkl", "wb"))
+    pickle.dump(y, open(experiment_dir_path + "/data/y.pkl", "wb"))
+    print("exported {count} skip-gram pairs to {path}.".format(count=num_datapoints, path=experiment_dir_path + "/data"))

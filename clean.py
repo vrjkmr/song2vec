@@ -5,7 +5,7 @@ import glob
 import os
 
 # cleaning function
-def clean_raw_data(experiment_name, csv_filepath, num_rows, num_batches=4):
+def clean_raw_data(experiment_dir_path, csv_filepath, num_rows, num_batches=4):
 
     # load dataframe
     dataframe = pd.read_csv(csv_filepath, sep="\t", skiprows=1, names=["all_data"])
@@ -30,11 +30,11 @@ def clean_raw_data(experiment_name, csv_filepath, num_rows, num_batches=4):
         start_idx = i * batch_length
         end_idx = ((i + 1) * batch_length) - 1
         clean_sub_dataframe = dataframe.loc[start_idx:end_idx, :].apply(_process_row, axis=1)
-        filepath = experiment_name + "/data/{start}-{end}.csv".format(start=start_idx, end=end_idx)
+        filepath = experiment_dir_path + "/data/{start}-{end}.csv".format(start=start_idx, end=end_idx)
         clean_sub_dataframe.to_csv(filepath, sep="\t")
 
     # merge sub-dataframes
-    filepaths = glob.glob(experiment_name + "/data/*[-]*.csv")
+    filepaths = glob.glob(experiment_dir_path + "/data/*[-]*.csv")
     filepaths.sort(key=lambda x: int(x.split("-")[0].split("/")[-1]))
     combined_dataframe = pd.read_csv(filepaths[0], sep="\t", index_col=0)
     if len(filepaths) > 1:
@@ -47,6 +47,6 @@ def clean_raw_data(experiment_name, csv_filepath, num_rows, num_batches=4):
         os.remove(filepath)
 
     # export combined dataframe
-    filepath = experiment_name + "/data/combined_dataset.csv"
+    filepath = experiment_dir_path + "/data/combined_dataset.csv"
     combined_dataframe.to_csv(filepath, sep="\t")
     print("exported clean dataset to {path}.".format(path=filepath))

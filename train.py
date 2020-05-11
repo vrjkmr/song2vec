@@ -7,16 +7,16 @@ from tensorflow.keras.optimizers import Adam
 import pickle
 
 # training function
-def build_and_train_model(experiment_name, embedding_dim, learning_rate, num_epochs, random_seed=42):
+def build_and_train_model(experiment_dir_path, embedding_dim, learning_rate, num_epochs, random_seed=42):
 
     # load tokenizer
-    tokenizer = pickle.load(open(experiment_name + "/data/tokenizer.pkl", "rb"))
+    tokenizer = pickle.load(open(experiment_dir_path + "/data/tokenizer.pkl", "rb"))
     track2idx = tokenizer.word_index
     vocabulary_size = len(track2idx) + 1
 
     # load training data
-    X = pickle.load(open(experiment_name + "/data/X.pkl", "rb"))
-    y = pickle.load(open(experiment_name + "/data/y.pkl", "rb"))
+    X = pickle.load(open(experiment_dir_path + "/data/X.pkl", "rb"))
+    y = pickle.load(open(experiment_dir_path + "/data/y.pkl", "rb"))
 
     # set seed
     tensorflow.random.set_seed(random_seed)
@@ -49,16 +49,16 @@ def build_and_train_model(experiment_name, embedding_dim, learning_rate, num_epo
 
     # fit model
     with tensorflow.device(device_config):
-        r = model.fit(X, y, epochs=num_epochs, verbose=2)
+        r = model.fit(X, y, epochs=num_epochs)
 
     # store model
-    filepath = experiment_name + "/model"
+    filepath = experiment_dir_path + "/model"
     model.save(filepath)
     print("exported trained model to {path}.".format(path=filepath))
 
     # store embedding weights
     target_embedding_layer = model.layers[2]
     embedding_weights = target_embedding_layer.get_weights()[0]
-    filepath = experiment_name + "/embeddings.pkl"
+    filepath = experiment_dir_path + "/embeddings.pkl"
     pickle.dump(embedding_weights, open(filepath, "wb"))
     print("exported track embeddings to {path}.".format(path=filepath))
