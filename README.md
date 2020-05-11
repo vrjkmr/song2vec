@@ -4,13 +4,13 @@ This repository contains the code for a skip-gram model for learning distributed
 
 ### Motivation
 
-This project was based on a [2017 talk by Spotify ML](https://youtu.be/HKW_v0xLHH4) on using AI to build predictive platforms. One of the topics in the talk revolved around leveraging NLP research on word embeddings ([word2vec](https://arxiv.org/abs/1301.3781)) to model track similarity. By modelling track similarity, a user can be recommeded new and similar tracks based on the tracks they have listened to in the past.
+This project was based on a [2017 talk by Spotify ML](https://youtu.be/HKW_v0xLHH4) on using AI to build predictive platforms. One of the topics in the talk revolved around leveraging NLP research on word embeddings ([word2vec](https://arxiv.org/abs/1301.3781)) to model track similarity. By modeling track similarity, a user can be recommended new and similar tracks based on the tracks they have listened to in the past.
 
 **Main idea:** Based on the assumption that users tend to listen to similar tracks in a sequence, one could build a word2vec model that learns a vector embedding for any given track, using the tracks that appear before and after it in different playlists. Once trained, the embedding weights would be organized in such a way that similar tracks would have similar vector embeddings.
 
 ### Approach
 
-[Zenodo's Spotify Playlists Dataset](https://zenodo.org/record/2594557) contains 1.2GB of playlists along with the track list for each playlist. I extracted a small fraction of the dataset, then built and trained a skip-gram model with negative sampling using the [tf.keras](https://www.tensorflow.org/api_docs/python/tf/keras) library.
+[Zenodo's Spotify Playlists Dataset](https://zenodo.org/record/2594557) contains 1.2GB of playlists along with the tracklist for each playlist. I extracted a small fraction of the dataset, then built and trained a skip-gram model with negative sampling using the [tf.keras](https://www.tensorflow.org/api_docs/python/tf/keras) library.
 
 ### Results
 
@@ -42,7 +42,7 @@ The project is organized in such a way that experiments can be run for different
 .
 ├── experiments/                # experiments (processed data + models)
     ├── default_hyperparams/    # experiment results for default hyperparameters
-├── notebooks/                  # jypyter notebooks for inference
+├── notebooks/                  # jupyter notebooks for inference
 ├── raw_data/                   # part of the original Zenodo dataset
 ├── src/                        # cleaning, preprocessing, and training scripts
 ├── run_experiment.py           # script for running an end-to-end experiment
@@ -62,9 +62,17 @@ The project is organized in such a way that experiments can be run for different
 
 To visualize the similarities learned by the trained model, open `notebooks/Inference.ipynb`.
 
-### Run your own experiment
+### Run an experiment
 
-The script `run_experiment.py` enables you to build and run your own experiment. To view the list of parameters, run `python run_experiment.py -h`.
+The script `run_experiment.py` enables you to build and run experiments. 
+
+Below is an example of an experiment.
+
+```
+python run_experiment.py large_wsz --window_size 4
+```
+
+To view the list of parameters, run `python run_experiment.py -h`.
 
 ```
 usage: run_experiment.py [-h] [--csv_path CSV_PATH] [-nr NUM_ROWS]
