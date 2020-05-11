@@ -102,7 +102,7 @@ optional arguments:
 
 Once run, the relevant files (including the model, embeddings, and tokenizer) will be saved in the `experiments/{experiment_name}` directory. To make inferences using this new experiment's results, simply open `notebooks/Inference.ipynb` and change the `experiment_name` variable in the notebook.
 
-### Acknowledgements
+### References
 
 - [Spotify Playlists Dataset by Zenodo](https://zenodo.org/record/2594557)
 - [Applying word2vec to Recommenders and Advertising](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
