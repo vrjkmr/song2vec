@@ -85,19 +85,23 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --csv_path CSV_PATH   path to original .csv dataset
+  --csv_path CSV_PATH   path to raw .csv dataset (defaults to
+                        raw_data/spotify_playlists.csv)
   -nr NUM_ROWS, --num_rows NUM_ROWS
                         number of rows to extract (-1 for whole dataset)
+                        (defaults to 10000)
   -wsz WINDOW_SIZE, --window_size WINDOW_SIZE
-                        (half) window size for skip-gram contexts
+                        (half) window size for skip-gram contexts (defaults to
+                        2)
   -emb EMBEDDING_DIM, --embedding_dim EMBEDDING_DIM
-                        word2vec embedding dimension size
+                        word2vec embedding dimension size (defaults to 100)
   -e EPOCHS, --epochs EPOCHS
-                        number of training epochs
+                        number of training epochs (defaults to 20)
   -lr LEARNING_RATE, --learning_rate LEARNING_RATE
-                        learning rate for Adam optimizer
+                        learning rate for Adam optimizer (defaults to 0.001)
   -rs RANDOM_SEED, --random_seed RANDOM_SEED
                         random seed for skip-gram generation and training
+                        (defaults to 42)
 ```
 
 Once run, the relevant files (including the model, embeddings, and tokenizer) will be saved in the `experiments/{experiment_name}` directory. To make inferences using this new experiment's results, simply open `notebooks/Inference.ipynb` and change the `experiment_name` variable in the notebook.
