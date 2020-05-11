@@ -50,7 +50,7 @@ As can be seen above, the model was able to learn the similarity between John Ma
 
 ## Running the project
 
-### Set up
+### Environment set-up
 
 1. Clone the project
 2. Create and activate a new conda environment
