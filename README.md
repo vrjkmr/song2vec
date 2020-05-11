@@ -6,7 +6,7 @@ This repository contains the code for a skip-gram model for learning distributed
 
 This project was based on a [2017 talk by Spotify ML](https://youtu.be/HKW_v0xLHH4) on using AI to build predictive platforms. One of the topics in the talk revolved around leveraging NLP research on word embeddings ([word2vec](https://arxiv.org/abs/1301.3781)) to model track similarity. By modeling track similarity, a user can be recommended new and similar tracks based on the tracks they have listened to in the past.
 
-**Main idea:** Based on the assumption that users tend to listen to similar tracks in a sequence, one could build a word2vec model that learns a vector embedding for any given track, using the tracks that appear before and after it in different playlists. Once trained, the embedding weights would be organized in such a way that similar tracks would have similar vector embeddings.
+**Main idea:** Based on the assumption that users tend to listen to similar tracks in a sequence, one could build a word2vec model that learns a vector embedding for any given track, using the tracks that appear before and after it in different playlists. Once trained, the embedding weights would be organized in such a way that similar tracks would have similar vectors.
 
 ### Approach
 
