@@ -14,7 +14,7 @@ This project was based on a [2017 talk by Spotify ML](https://youtu.be/HKW_v0xLH
 
 ### Results
 
-The model seems to have not only learn similar vectors for tracks that appear close to one another in a given playlist, but was also able to learn some interesting relations between songs that appear nowhere near each other in the dataset.
+The model seems to have not only learned similar vectors for tracks that appear close to one another in a given playlist, but also managed to learn some interesting relationships between songs that appear nowhere near each other in the dataset.
 
 Below is an example showing songs similar to John Mayer's cover of Tom Petty's "Free Fallin'" post-training.
 
@@ -35,6 +35,8 @@ top 10 tracks most similar to 'john mayer - free fallin' - live at the nokia the
 As can be seen above, the model was able to learn the similarity between John Mayer's cover and Tom Petty's original version, even though both tracks do not appear close to each other in the dataset. John Mayer's cover appears in position 4602 and Tom Petty's original appears in position 206.
 
 ### Project directory structure
+
+The project is organized in such a way that experiments can be run for different hyperparameter settings. Results and models from each experiment are stored in the `experiments` directory.
 
 ```
 .
@@ -90,7 +92,7 @@ optional arguments:
                         random seed for skip-gram generation and training
 ```
 
-Once run, the relevant files (including the model, embeddings, and tokenizer) will be saved in the `experiments/{experiment_name}` directory. To make inferences using this new experiment's results, simply open `notebooks/Inference.ipynb` and change the `experiment_name` variable.
+Once run, the relevant files (including the model, embeddings, and tokenizer) will be saved in the `experiments/{experiment_name}` directory. To make inferences using this new experiment's results, simply open `notebooks/Inference.ipynb` and change the `experiment_name` variable in the notebook.
 
 ### Acknowledgements
 
