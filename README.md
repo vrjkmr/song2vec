@@ -40,8 +40,8 @@ The project is organized in such a way that experiments can be run for different
 
 ```
 .
-├── experiments/                # experiments (processed data + models)
-    ├── default_hyperparams/    # experiment results for default hyperparameters
+└── experiments/                # experiments (processed data + models)
+    └── default_hyperparams/    # experiment results for default hyperparameters
 ├── notebooks/                  # jupyter notebooks for inference
 ├── raw_data/                   # part of the original Zenodo dataset
 ├── src/                        # cleaning, preprocessing, and training scripts
