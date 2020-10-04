@@ -1,4 +1,4 @@
-# Skipgramophone
+# song2vec
 
 This repository contains the code for a skip-gram model for learning distributed representations of songs based on the context in which they appear in a playlist.
 
